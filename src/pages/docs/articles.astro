@@ -1,0 +1,64 @@
+---
+import DocLayout from '../../layouts/DocLayout.astro';
+import { getCollection } from 'astro:content';
+
+const articles = await getCollection('articles');
+// 按发布日期排序
+const sortedArticles = articles.sort((a, b) => 
+  (b.data.pubDate?.valueOf() || 0) - (a.data.pubDate?.valueOf() || 0)
+);
+
+// 分组
+const beginnerArticles = sortedArticles.filter(a => a.data.tags?.includes('入门'));
+const advancedArticles = sortedArticles.filter(a => a.data.tags?.includes('进阶'));
+---
+
+<DocLayout title="文章列表" description="所有跑步相关文章的索引页面。">
+  <div class="prose">
+    <h1>文章列表</h1>
+    <p>所有跑步相关文章的索引，点击标题查看详细内容。</p>
+
+    <h2>入门篇</h2>
+    <ul class="article-list">
+      {beginnerArticles.map(article => (
+        <li>
+          <a href={`/docs/articles/${article.slug}`}>{article.data.title}</a>
+          <p>{article.data.description}</p>
+        </li>
+      ))}
+    </ul>
+
+    <h2>进阶篇</h2>
+    <ul class="article-list">
+      {advancedArticles.map(article => (
+        <li>
+          <a href={`/docs/articles/${article.slug}`}>{article.data.title}</a>
+          <p>{article.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</DocLayout>
+
+<style>
+  .article-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  .article-list li {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .article-list li:last-child {
+    border-bottom: none;
+  }
+  .article-list a {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .article-list p {
+    margin-top: 0.5rem;
+    color: #6b7280;
+  }
+</style>

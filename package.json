@@ -1,0 +1,16 @@
+{
+  "name": "run-docs",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "跑步知识文档站 - 从入门到进阶的完整跑步指南",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.0.0",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^5.0.0"
+  }
+}

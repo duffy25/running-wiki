@@ -1,0 +1,95 @@
+---
+import '../styles/global.css';
+import config from '../utils/siteConfig';
+import ThemeToggle from '../components/ThemeToggle.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  hideSidebar?: boolean;
+  children: import('astro').HTMLAttributes['children'];
+}
+
+const { siteTitle, siteDescription, navLinks, sidebarLinks } = config;
+const { title = siteTitle, description = siteDescription } = Astro.props;
+
+// 获取当前路径用于高亮当前页面
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title} — {siteTitle}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="zh_CN" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+  <body>
+    <div class="site-layout">
+      <header class="site-header">
+        <a href="/" class="logo">{siteTitle}</a>
+        <nav>
+          {navLinks.map(link => (
+            <a href={link.href} class:list={[{ active: currentPath === link.href }]}>{link.label}</a>
+          ))}
+        </nav>
+        <div class="theme-toggle-wrapper">
+          <ThemeToggle />
+        </div>
+      </header>
+
+      {!Astro.props.hideSidebar && (
+        <aside class="sidebar">
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">文档</div>
+            <ul class="sidebar-links">
+              {sidebarLinks.docs.map(link => (
+                <li>
+                  <a href={link.href} class:list={[{ active: currentPath === link.href }]}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">跑步文章</div>
+            <ul class="sidebar-links">
+              {sidebarLinks.articles.map(link => (
+                <li>
+                  <a href={link.href} class:list={[{ active: currentPath === link.href }]}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <div class="sidebar-section-title">资源</div>
+            <ul class="sidebar-links">
+              {sidebarLinks.resources.map(link => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+      )}
+
+      <main class="main-content">
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>

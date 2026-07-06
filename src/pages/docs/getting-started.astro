@@ -1,0 +1,46 @@
+---
+import DocLayout from '../../layouts/DocLayout.astro';
+---
+
+<DocLayout title="快速开始" description="学习如何搭建和使用文档站点。">
+  <div class="prose">
+    <h1>快速开始</h1>
+
+    <p>欢迎使用文档站点。本指南将帮助你快速搭建并运行。</p>
+
+    <h2>前置条件</h2>
+    <p>开始前请确保你已具备：</p>
+    <ul>
+      <li>已安装 Node.js 18+</li>
+      <li>已安装 npm 或包管理器</li>
+      <li>了解基本的 Markdown 语法</li>
+    </ul>
+
+    <h2>安装</h2>
+    <p>安装所需依赖：</p>
+    <pre><code>npm install</code></pre>
+
+    <h2>快速启动</h2>
+    <p>启动开发服务器：</p>
+    <pre><code>npm run dev</code></pre>
+    <p>然后在浏览器中打开 <a href="http://localhost:4321">http://localhost:4321</a>。</p>
+
+    <h2>项目结构</h2>
+    <pre><code>docs-site/
+├── src/
+│   ├── layouts/       # 页面布局组件
+│   ├── pages/         # 路由页面
+│   ├── styles/        # 全局样式
+│   └── utils/         # 工具函数
+├── public/            # 静态资源
+├── astro.config.mjs   # Astro 配置
+└── package.json</code></pre>
+
+    <h2>下一步</h2>
+    <ul>
+      <li>阅读 <a href="/docs/guides">使用指南</a> 了解常见工作流程</li>
+      <li>查看 <a href="/docs/api">API 参考</a> 获取详细规格</li>
+      <li>浏览 <a href="#faq">常见问题</a> 解答常见疑问</li>
+    </ul>
+  </div>
+</DocLayout>

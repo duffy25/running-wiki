@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  hideSidebar?: boolean;
+  children: import('astro').HTMLAttributes['children'];
+}
+
+const { title, description, hideSidebar } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} hideSidebar={hideSidebar}>
+  <slot />
+</BaseLayout>

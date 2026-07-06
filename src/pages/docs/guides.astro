@@ -1,0 +1,60 @@
+---
+import DocLayout from '../../layouts/DocLayout.astro';
+---
+
+<DocLayout title="使用指南" description="常见工作流程和任务的实用指南。">
+  <div class="prose">
+    <h1>使用指南</h1>
+    <p>常见工作流程和任务的实用指南。</p>
+
+    <h2>编写文档</h2>
+    <p>所有文档使用 Markdown 编写。将 <code>.md</code> 文件放在 <code>src/pages/docs/</code> 目录下，它们会被自动路由。</p>
+
+    <h3>Frontmatter（元数据）</h3>
+    <p>使用 YAML frontmatter 设置页面元数据：</p>
+    <pre><code>---
+layout: '../../layouts/DocLayout.astro'
+title: '页面标题'
+description: '用于 SEO 的页面描述。'
+---</code></pre>
+
+    <h3>Markdown 功能</h3>
+    <ul>
+      <li><strong>标题</strong>：<code># H1</code>、<code>## H2</code>、<code>### H3</code></li>
+      <li><strong>代码块</strong>：使用三个反引号 + 语言标识符</li>
+      <li><strong>表格</strong>：标准 Markdown 表格语法</li>
+      <li><strong>引用</strong>：<code>&gt;</code> 前缀</li>
+    </ul>
+
+    <h2>添加页面</h2>
+    <ol>
+      <li>在 <code>src/pages/</code> 下的对应文件夹中创建 <code>.md</code> 文件</li>
+      <li>文件路径即为 URL 路径</li>
+      <li>添加 frontmatter，包含布局、标题和描述</li>
+    </ol>
+    <p>示例：<code>src/pages/docs/api/endpoints.md</code> → <code>/docs/api/endpoints</code></p>
+
+    <h2>自定义样式</h2>
+    <p>通过编辑 <code>src/styles/global.css</code> 自定义外观。设计系统使用 CSS 自定义属性来实现一致的主题。</p>
+
+    <h2>构建生产版本</h2>
+    <pre><code>npm run build</code></pre>
+    <p>这会生成静态 HTML 文件到 <code>dist/</code> 目录，可以直接部署到任何地方。</p>
+
+    <h2>部署指南</h2>
+    <h3>Vercel</h3>
+    <pre><code>vercel --prod</code></pre>
+
+    <h3>Netlify</h3>
+    <ul>
+      <li>构建命令：<code>npm run build</code></li>
+      <li>发布目录：<code>dist</code></li>
+    </ul>
+
+    <h3>GitHub Pages</h3>
+    <p>将 <code>dist/</code> 目录推送到 <code>gh-pages</code> 分支。</p>
+
+    <h3>Cloudflare Pages</h3>
+    <p>自动检测 <code>dist/</code> 目录并部署。</p>
+  </div>
+</DocLayout>

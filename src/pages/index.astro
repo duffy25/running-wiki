@@ -1,0 +1,58 @@
+---
+import DocLayout from '../layouts/DocLayout.astro';
+export const prerender = true;
+---
+
+<DocLayout hideSidebar={true}>
+  <div class="hero">
+    <h1>文档站点</h1>
+    <p>基于 Astro 构建的 Markdown 优先技术文档站。快速、轻量、美观。</p>
+    <div class="hero-actions">
+      <a href="/docs/getting-started" class="btn btn-primary">快速开始 →</a>
+      <a href="/docs/guides" class="btn btn-secondary">使用指南</a>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+    <a href="/docs/getting-started" class="card">
+      <h3>🚀 快速开始</h3>
+      <p>快速搭建并运行你的文档站点。</p>
+    </a>
+    <a href="/docs/guides" class="card">
+      <h3>📖 使用指南</h3>
+      <p>常见工作流程和任务的实用指南。</p>
+    </a>
+    <a href="/docs/api" class="card">
+      <h3>⚙️ API 参考</h3>
+      <p>完整的 API 文档与示例。</p>
+    </a>
+  </div>
+
+  <h2 id="faq">常见问题</h2>
+
+  <blockquote>
+    <p><strong>问：这是无框架的吗？</strong></p>
+    <p>答：是的，这是一个纯 Astro 静态站点，没有 JavaScript 框架的开销。</p>
+  </blockquote>
+
+  <blockquote>
+    <p><strong>问：可以自定义样式吗？</strong></p>
+    <p>答：当然可以。所有样式都在 <code>src/styles/global.css</code> 中，使用 CSS 自定义属性实现。</p>
+  </blockquote>
+
+  <blockquote>
+    <p><strong>问：如何添加新页面？</strong></p>
+    <p>答：只需在对应文件夹下创建一个 <code>.md</code> 文件即可，Astro 会自动处理路由。</p>
+  </blockquote>
+
+  <hr />
+
+  <h2 id="changelog">更新日志</h2>
+
+  ### v1.0.0 (2026-07-07)
+
+  - 首次发布
+  - Markdown 优先的文档系统
+  - 响应式设计
+  - 通过 CSS 自定义属性支持暗色/亮色主题
+</DocLayout>
