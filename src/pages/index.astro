@@ -1,58 +1,77 @@
 ---
 import DocLayout from '../layouts/DocLayout.astro';
+import config from '../utils/siteConfig';
 export const prerender = true;
+
+const { siteTitle } = config;
 ---
 
 <DocLayout hideSidebar={true}>
-  <div class="hero">
-    <h1>文档站点</h1>
-    <p>基于 Astro 构建的 Markdown 优先技术文档站。快速、轻量、美观。</p>
+  <section class="hero">
+    <span class="hero-badge">跑步知识站</span>
+    <h1>科学跑步<br/>健康生活</h1>
+    <p>从入门到进阶的完整跑步指南。掌握正确姿势，预防运动损伤，跑出更好的自己。</p>
     <div class="hero-actions">
-      <a href="/docs/getting-started" class="btn btn-primary">快速开始 →</a>
-      <a href="/docs/guides" class="btn btn-secondary">使用指南</a>
+      <a href="/docs/articles" class="btn btn-primary">开始阅读</a>
+      <a href="/docs/running" class="btn btn-secondary">新手指南</a>
     </div>
-  </div>
+  </section>
 
-  <div class="cards-grid">
-    <a href="/docs/getting-started" class="card">
-      <h3>🚀 快速开始</h3>
-      <p>快速搭建并运行你的文档站点。</p>
-    </a>
-    <a href="/docs/guides" class="card">
-      <h3>📖 使用指南</h3>
-      <p>常见工作流程和任务的实用指南。</p>
-    </a>
-    <a href="/docs/api" class="card">
-      <h3>⚙️ API 参考</h3>
-      <p>完整的 API 文档与示例。</p>
-    </a>
-  </div>
+  <section class="feature-section">
+    <h2 class="feature-section-title">精选内容</h2>
+    <div class="cards-grid">
+      <a href="/docs/running" class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>跑步指南</h3>
+        <p>从零开始学跑步，装备选择、热身拉伸、训练计划一应俱全。</p>
+      </a>
+      <a href="/docs/running-injury-prevention" class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>损伤预防</h3>
+        <p>深入解析常见损伤成因，科学预防与康复训练方法。</p>
+      </a>
+      <a href="/docs/marathon-training" class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+            <line x1="4" y1="22" x2="4" y2="15"/>
+          </svg>
+        </div>
+        <h3>马拉松训练</h3>
+        <p>系统化训练计划，从半马到全马的完整进阶之路。</p>
+      </a>
+    </div>
+  </section>
 
-  <h2 id="faq">常见问题</h2>
+  <section class="faq-section">
+    <h2 class="feature-section-title">常见问题</h2>
+    
+    <div class="faq-item">
+      <p><strong>新手应该从哪里开始？</strong></p>
+      <p style="color: var(--color-text-secondary); margin-top: var(--space-2);">建议从跑步指南开始，了解基本的装备选择、跑步姿势和训练计划。</p>
+    </div>
+    
+    <div class="faq-item">
+      <p><strong>跑步膝盖疼怎么办？</strong></p>
+      <p style="color: var(--color-text-secondary); margin-top: var(--space-2);">参考损伤预防文章中的跑步膝部分，了解成因和康复训练方法。</p>
+    </div>
+    
+    <div class="faq-item">
+      <p><strong>想跑马拉松需要多久准备？</strong></p>
+      <p style="color: var(--color-text-secondary); margin-top: var(--space-2);">根据基础不同，通常需要 16-20 周的系统训练。详见马拉松训练指南。</p>
+    </div>
+  </section>
 
-  <blockquote>
-    <p><strong>问：这是无框架的吗？</strong></p>
-    <p>答：是的，这是一个纯 Astro 静态站点，没有 JavaScript 框架的开销。</p>
-  </blockquote>
-
-  <blockquote>
-    <p><strong>问：可以自定义样式吗？</strong></p>
-    <p>答：当然可以。所有样式都在 <code>src/styles/global.css</code> 中，使用 CSS 自定义属性实现。</p>
-  </blockquote>
-
-  <blockquote>
-    <p><strong>问：如何添加新页面？</strong></p>
-    <p>答：只需在对应文件夹下创建一个 <code>.md</code> 文件即可，Astro 会自动处理路由。</p>
-  </blockquote>
-
-  <hr />
-
-  <h2 id="changelog">更新日志</h2>
-
-  ### v1.0.0 (2026-07-07)
-
-  - 首次发布
-  - Markdown 优先的文档系统
-  - 响应式设计
-  - 通过 CSS 自定义属性支持暗色/亮色主题
+  <footer class="site-footer">
+    <p>{siteTitle} · 科学跑步，健康生活</p>
+  </footer>
 </DocLayout>
