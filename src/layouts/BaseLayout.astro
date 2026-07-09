@@ -2,6 +2,8 @@
 import '../styles/global.css';
 import config from '../utils/siteConfig';
 import ThemeToggle from '../components/ThemeToggle.astro';
+import SearchBox from '../components/SearchBox.astro';
+import { getCollection } from 'astro:content';
 
 interface Props {
   title?: string;
@@ -12,6 +14,14 @@ interface Props {
 
 const { siteTitle, siteDescription, navLinks, sidebarLinks } = config;
 const { title = siteTitle, description = siteDescription } = Astro.props;
+
+// Get articles for search
+const articles = await getCollection('articles');
+const searchArticles = articles.map(a => ({
+  slug: a.slug,
+  title: a.data.title,
+  description: a.data.description,
+}));
 
 // 获取当前路径用于高亮当前页面
 const currentPath = Astro.url.pathname;
@@ -48,6 +58,7 @@ const currentPath = Astro.url.pathname;
           ))}
         </nav>
         <div class="theme-toggle-wrapper">
+          <SearchBox articles={searchArticles} />
           <ThemeToggle />
         </div>
       </header>

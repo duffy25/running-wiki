@@ -3,7 +3,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://docs.example.com',
+  site: 'https://running-wiki.pages.dev',
   integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
